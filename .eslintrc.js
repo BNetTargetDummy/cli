@@ -3,18 +3,15 @@ module.exports = {
   'env': {
     'es6': true,
     'node': true,
-    'browser': true
+    'browser': false
   },
-  'parser': 'babel-eslint',
   'parserOptions': {
     'ecmaVersion': 6,
     'sourceType': 'module',
     'ecmaFeatures': {
-      'jsx': true,
       'modules': true
     }
   },
-  'plugins': ['react'],
   'rules': {
     'array-bracket-spacing': ['error', 'never'],
     'block-scoped-var': 'error',
@@ -38,8 +35,6 @@ module.exports = {
     'indent': ['error', 2, {
       'SwitchCase': 1
     }],
-    'react/jsx-uses-react': 'error',
-    'react/jsx-uses-vars': 'error',
     'key-spacing': ['error', {
       'beforeColon': false,
       'afterColon': true
