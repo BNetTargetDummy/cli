@@ -10,12 +10,6 @@ const request = yargs
     builder: (yargs) => {
       return yargs
         .options({
-          origin: {
-            alias: 'o',
-            describe: 'The API endpoint to make the request to',
-            choices: ['us', 'eu'],
-            default: 'us',
-          },
           battletag: {
             alias: 'b',
             describe: 'The [battletag] of the {profile}',
@@ -30,9 +24,9 @@ const request = yargs
         .demandOption(['battletag', 'id'], 'Please specify the [battletag] and [id] of the {profile} and {hero}');
     },
     handler: argv => {
-      const { origin, battletag, id } = argv;
+      const { origin, locale, battletag, id } = argv;
 
-      return blizzard.d3.profile({ origin, battletag, id })
+      return blizzard.d3.profile({ origin, locale, battletag, id })
         .then(response => {
           console.log(JSON.stringify(response.data));
         });

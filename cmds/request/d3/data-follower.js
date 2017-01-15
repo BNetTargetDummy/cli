@@ -10,12 +10,6 @@ const request = yargs
     builder: (yargs) => {
       return yargs
         .options({
-          origin: {
-            alias: 'o',
-            describe: 'The API endpoint to make the request to',
-            choices: ['us', 'eu'],
-            default: 'us',
-          },
           follower: {
             alias: 'f',
             describe: 'The [follower] of the {data/follower}',
@@ -26,9 +20,9 @@ const request = yargs
         .demandOption(['follower'], 'Please specify the [follower]');
     },
     handler: argv => {
-      const { origin, follower } = argv;
+      const { origin, locale, follower } = argv;
 
-      return blizzard.d3.data(['follower'], { origin, follower })
+      return blizzard.d3.data(['follower'], { origin, locale, follower })
         .then(response => {
           console.log(JSON.stringify(response.data));
         });

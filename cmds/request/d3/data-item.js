@@ -10,12 +10,6 @@ const request = yargs
     builder: (yargs) => {
       return yargs
         .options({
-          origin: {
-            alias: 'o',
-            describe: 'The API endpoint to make the request to',
-            choices: ['us', 'eu'],
-            default: 'us',
-          },
           item: {
             alias: 'i',
             describe: 'The [item] of the {data/item}',
@@ -25,9 +19,9 @@ const request = yargs
         .demandOption(['data'], 'Please specify the [item]');
     },
     handler: argv => {
-      const { origin, item } = argv;
+      const { origin, locale, item } = argv;
 
-      return blizzard.d3.data(['item'], { origin, item })
+      return blizzard.d3.data(['item'], { origin, locale, item })
         .then(response => {
           console.log(JSON.stringify(response.data));
         });
