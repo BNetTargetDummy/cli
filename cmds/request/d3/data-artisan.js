@@ -6,7 +6,7 @@ const blizzard = require('blizzard.js').initialize({ apikey: process.env.BATTLEN
 const request = yargs
   .command({
     command: 'data-artisan',
-    describe: 'Fetch a Diablo 3 Data Artisan',
+    describe: 'Fetch a Diablo 3 Artisan',
     builder: (yargs) => {
       return yargs
         .options({
@@ -18,12 +18,12 @@ const request = yargs
           },
           artisan: {
             alias: 'a',
-            describe: 'The [artisan] of the {data/artisan}',
+            describe: 'The [id] of the {artisan}',
             choices: ['blacksmith', 'jeweler', 'mystic'],
             default: 'blacksmith',
           },
         })
-        .demandOption(['artisan'], 'Please provide at least the [artisan] of the {data/artisan}');
+        .demandOption(['artisan'], 'Please provide specify the [artisan]');
     },
     handler: argv => {
       const { origin, artisan } = argv;

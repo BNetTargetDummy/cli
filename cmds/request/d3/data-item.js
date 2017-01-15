@@ -6,7 +6,7 @@ const blizzard = require('blizzard.js').initialize({ apikey: process.env.BATTLEN
 const request = yargs
   .command({
     command: 'data-item',
-    describe: 'Fetch a Diablo 3 Data Item',
+    describe: 'Fetch a Diablo 3 Item',
     builder: (yargs) => {
       return yargs
         .options({
@@ -22,7 +22,7 @@ const request = yargs
             type: 'string',
           },
         })
-        .demandOption(['data'], 'Please provide at least the [item] of the {data/item}');
+        .demandOption(['data'], 'Please specify the [item]');
     },
     handler: argv => {
       const { origin, item } = argv;

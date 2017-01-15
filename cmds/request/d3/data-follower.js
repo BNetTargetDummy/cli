@@ -6,7 +6,7 @@ const blizzard = require('blizzard.js').initialize({ apikey: process.env.BATTLEN
 const request = yargs
   .command({
     command: 'data-follower',
-    describe: 'Fetch a Diablo 3 Data Follower',
+    describe: 'Fetch a Diablo 3 Follower',
     builder: (yargs) => {
       return yargs
         .options({
@@ -23,7 +23,7 @@ const request = yargs
             default: 'templar',
           },
         })
-        .demandOption(['follower'], 'Please provide at least the [follower] of the {data/follower}');
+        .demandOption(['follower'], 'Please specify the [follower]');
     },
     handler: argv => {
       const { origin, follower } = argv;

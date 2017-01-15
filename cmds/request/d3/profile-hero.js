@@ -6,7 +6,7 @@ const blizzard = require('blizzard.js').initialize({ apikey: process.env.BATTLEN
 const request = yargs
   .command({
     command: 'profile-hero',
-    describe: 'Fetch a Diablo 3 Profile Hero',
+    describe: 'Fetch a Diablo 3 Hero',
     builder: (yargs) => {
       return yargs
         .options({
@@ -27,7 +27,7 @@ const request = yargs
             type: 'string',
           },
         })
-        .demandOption(['battletag', 'id'], 'Please provide at least the [battletag] and [id] of the {profile/hero}');
+        .demandOption(['battletag', 'id'], 'Please specify the [battletag] and [id] of the {profile} and {hero}');
     },
     handler: argv => {
       const { origin, battletag, id } = argv;

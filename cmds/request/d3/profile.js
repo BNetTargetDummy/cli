@@ -22,7 +22,7 @@ const request = yargs
             type: 'string',
           },
         })
-        .demandOption(['battletag'], 'Please provide at least the [battletag] of the {profile}');
+        .demandOption(['battletag'], 'Please specify the [battletag] of the {profile}');
     },
     handler: argv => {
       const { origin, battletag } = argv;

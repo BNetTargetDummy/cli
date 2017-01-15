@@ -5,7 +5,7 @@ const yargs = require('yargs');
 const request = yargs
   .command({
     command: 'sc2 <resource>',
-    describe: 'Perform a SC2 request to the Battle.net API',
+    describe: 'Perform a Starcraft 2 request to the Battle.net API',
     builder: (yargs) => yargs
       .options({
         origin: {
