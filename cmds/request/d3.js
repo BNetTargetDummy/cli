@@ -3,15 +3,15 @@
 const yargs = require('yargs');
 
 const request = yargs
-    .command({
-      command: 'request <game>',
-      describe: 'Request to the Battle.net API',
+  .command({
+      command: 'd3 <endpoint>',
+      describe: 'Diablo 3 game API request to the Battle.net API',
       builder: (yargs) => yargs
-        .commandDir('request')
+        .commandDir('d3')
         .demandCommand(1),
       handler: (argv) => {
       }
-        }
-    ).argv;
+    }
+  ).argv;
 
 module.exports = request;
