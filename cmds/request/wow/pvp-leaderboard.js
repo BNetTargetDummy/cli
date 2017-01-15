@@ -1,7 +1,7 @@
 #! /usr/bin/env node
 
 const yargs = require('yargs');
-const blizzard = require('blizzard.js').initialize({apikey: process.env.BATTLENET_CLIENT_ID});
+const blizzard = require('blizzard.js').initialize({ apikey: process.env.BATTLENET_CLIENT_ID });
 
 const request = yargs
   .command({
@@ -20,19 +20,19 @@ const request = yargs
             alias: 'b',
             describe: 'The [bracket] of the {pvp/leaderboard}',
             choices: ['2v2', '3v3', '5v5', 'rgb'],
-            type: 'string'
+            type: 'string',
           },
         })
         .demandOption(['bracket'], 'Please provide at least the [bracket] of the {pvp/leaderboard}');
     },
     handler: argv => {
-      const {origin, bracket} = argv;
+      const { origin, bracket } = argv;
 
-      return blizzard.wow.pvp({origin, bracket})
+      return blizzard.wow.pvp({ origin, bracket })
         .then(response => {
           console.log(JSON.stringify(response.data));
         });
-    }
+    },
   }).argv;
 
 module.exports = request;

@@ -1,6 +1,7 @@
 #! /usr/bin/env node
 
 const yargs = require('yargs');
+const blizzard = require('blizzard.js').initialize({ apikey: process.env.BATTLENET_CLIENT_ID });
 
 const request = yargs
   .command({
@@ -18,29 +19,29 @@ const request = yargs
           id: {
             alias: 'i',
             describe: 'The [id] of the {profile}',
-            type: 'number'
+            type: 'number',
           },
           region: {
             alias: 'r',
             describe: 'The [region] of the {profile}',
-            type: 'string'
+            type: 'string',
           },
           name: {
             alias: 'n',
             describe: 'The [name] of the {profile}',
-            type: 'string'
-          }
+            type: 'string',
+          },
         })
-        .demandOption(['id','region','name'], 'Please provide at least the [id], [region], and [name] of the {data/achievements}');
+        .demandOption(['id', 'region', 'name'], 'Please provide at least the [id], [region], and [name] of the {data/achievements}');
     },
     handler: argv => {
-      const {origin, id, region, name} = argv;
+      const { origin, id, region, name } = argv;
 
-      return blizzard.d3.data({origin, id, region, name})
+      return blizzard.d3.data({ origin, id, region, name })
         .then(response => {
           console.log(JSON.stringify(response.data));
         });
-    }
+    },
   }).argv;
 
 module.exports = request;

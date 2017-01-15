@@ -19,26 +19,26 @@ const request = yargs
           realm: {
             alias: 'r',
             describe: 'The [realm] of the {character}',
-            type: 'string'
+            type: 'string',
           },
           name: {
             alias: 'n',
             describe: 'The [name] of the {character}',
-            type: 'string'
+            type: 'string',
           },
         })
         .demandOption(['realm', 'name'], 'Please provide at least the [realm] and [name] of the {character}');
     },
     handler: (argv) => {
-      const {origin, realm, name} = argv;
-      const test = {origin, realm, name};
+      const { origin, realm, name } = argv;
+      const test = { origin, realm, name };
       console.log(test);
 
-      return blizzard.wow.character(['profile'], {origin, realm, name})
+      return blizzard.wow.character(['profile'], { origin, realm, name })
         .then(response => {
           console.log(JSON.stringify(response.data));
         });
-    }
+    },
   }).argv;
 
 module.exports = request;

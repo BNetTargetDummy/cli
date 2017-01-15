@@ -1,7 +1,7 @@
 #! /usr/bin/env node
 
 const yargs = require('yargs');
-const blizzard = require('blizzard.js').initialize({apikey: process.env.BATTLENET_CLIENT_ID});
+const blizzard = require('blizzard.js').initialize({ apikey: process.env.BATTLENET_CLIENT_ID });
 
 const guild = yargs
   .command({
@@ -19,24 +19,24 @@ const guild = yargs
           realm: {
             alias: 'r',
             describe: 'The [realm] of the {guild}',
-            type: 'string'
+            type: 'string',
           },
           name: {
             alias: 'n',
             describe: 'The name of the guild',
-            type: 'string'
+            type: 'string',
           },
         })
         .demandOption(['realm', 'name'], 'Please provide at least the [realm] and [name] of the {guild}');
     },
     handler: (argv) => {
-      const {origin, realm, name} = argv;
+      const { origin, realm, name } = argv;
 
-      return blizzard.wow.guild(['profile'], {origin, realm, name})
+      return blizzard.wow.guild(['profile'], { origin, realm, name })
         .then(response => {
           console.log(JSON.stringify(response.data));
         });
-    }
+    },
   }).argv;
 
 module.exports = guild;

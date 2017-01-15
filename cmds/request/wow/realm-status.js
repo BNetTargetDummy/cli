@@ -1,7 +1,7 @@
 #! /usr/bin/env node
 
 const yargs = require('yargs');
-const blizzard = require('blizzard.js').initialize({apikey: process.env.BATTLENET_CLIENT_ID});
+const blizzard = require('blizzard.js').initialize({ apikey: process.env.BATTLENET_CLIENT_ID });
 
 const request = yargs
   .command({
@@ -19,18 +19,18 @@ const request = yargs
           realms: {
             alias: 'r',
             describe: 'The [id] of the {item}',
-            type: 'array'
-          }
-        })
+            type: 'array',
+          },
+        });
     },
     handler: argv => {
-      const {origin, realms} = argv;
+      const { origin, realms } = argv;
 
-      return blizzard.wow.realms({origin, realms})
+      return blizzard.wow.realms({ origin, realms })
         .then(response => {
           console.log(JSON.stringify(response.data));
         });
-    }
+    },
   }).argv;
 
 module.exports = request;
