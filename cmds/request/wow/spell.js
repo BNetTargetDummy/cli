@@ -10,12 +10,6 @@ const request = yargs
     builder: (yargs) => {
       return yargs
         .options({
-          origin: {
-            alias: 'o',
-            describe: 'The API endpoint to make the request to',
-            choices: ['us', 'eu'],
-            default: 'us',
-          },
           id: {
             alias: 'i',
             describe: 'The [id] of the {spell}',

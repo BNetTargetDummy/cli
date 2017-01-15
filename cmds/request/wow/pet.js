@@ -8,15 +8,7 @@ const request = yargs
     command: 'pet',
     describe: 'Fetch a World of Warcraft Pet',
     builder: (yargs) => {
-      return yargs
-        .options({
-          origin: {
-            alias: 'o',
-            describe: 'The API endpoint to make the request to',
-            choices: ['us', 'eu'],
-            default: 'us',
-          },
-        });
+      return yargs;
     },
     handler: (argv) => {
       const { origin } = argv;

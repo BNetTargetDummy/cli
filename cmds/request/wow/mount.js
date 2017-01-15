@@ -8,15 +8,7 @@ const request = yargs
     command: 'mount',
     describe: 'Fetch a World of Warcraft Mount',
     builder: (yargs) => {
-      return yargs
-        .options({
-          origin: {
-            alias: 'o',
-            describe: 'The API endpoint to make the request to',
-            choices: ['us', 'eu'],
-            default: 'us',
-          },
-        });
+      return yargs;
     },
     handler: (argv) => {
       const { origin } = argv;

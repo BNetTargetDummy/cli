@@ -8,15 +8,7 @@ const request = yargs
     command: 'data-guild-rewards',
     describe: 'Fetch a World of Warcraft Data Guild Rewards',
     builder: (yargs) => {
-      return yargs
-        .options({
-          origin: {
-            alias: 'o',
-            describe: 'The API endpoint to make the request to',
-            choices: ['us', 'eu'],
-            default: 'us',
-          },
-        });
+      return yargs;
     },
     handler: (argv) => {
       const { origin } = argv;
