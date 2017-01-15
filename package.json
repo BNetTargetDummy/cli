@@ -4,13 +4,13 @@
   "description": "Command Line Interface for TargetDummy",
   "main": "index.js",
   "scripts": {
+    "lint": "./node_modules/.bin/eslint -c .eslintrc.js .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Ben Weier <ben.weier@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "blizzard.js": "^1.6.0",
-    "dotenv": "^4.0.0",
     "yargs": "^6.6.0"
   },
   "bin": {
