@@ -6,7 +6,7 @@ const blizzard = require('blizzard.js').initialize({ apikey: process.env.BATTLEN
 const request = yargs
   .command({
     command: 'profile',
-    describe: 'Fetch a Diablo 3 Data Item',
+    describe: 'Fetch a Diablo 3 Profile',
     builder: (yargs) => {
       return yargs
         .options({

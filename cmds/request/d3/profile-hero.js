@@ -18,12 +18,12 @@ const request = yargs
           },
           battletag: {
             alias: 'b',
-            describe: 'The [battletag] of the {profile/hero}',
+            describe: 'The [battletag] of the {profile}',
             type: 'string',
           },
           id: {
             alias: 'i',
-            describe: 'The [id] of the {profile/hero}',
+            describe: 'The [id] of the {hero}',
             type: 'string',
           },
         })

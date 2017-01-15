@@ -6,7 +6,7 @@ const blizzard = require('blizzard.js').initialize({ apikey: process.env.BATTLEN
 const request = yargs
   .command({
     command: 'data-achievements',
-    describe: 'Fetch a Starcraft 2 Data Rewards',
+    describe: 'Fetch Starcraft 2 Rewards',
     builder: (yargs) => {
       return yargs
         .options({
