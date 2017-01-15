@@ -48,6 +48,7 @@ module.exports = {
     'no-array-constructor': 'error',
     'no-caller': 'error',
     'no-catch-shadow': 'error',
+    'no-console': ['error', { allow: ['log'] }],
     'no-dupe-keys': 'error',
     'no-empty': 'error',
     'no-eval': 'error',
