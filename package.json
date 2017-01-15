@@ -1,6 +1,6 @@
 {
-  "name": "@targetdummy/cli",
-  "version": "0.1.0",
+  "name": "@targetdummy/console",
+  "version": "0.0.1",
   "description": "Command Line Interface for TargetDummy",
   "main": "index.js",
   "scripts": {

@@ -3,15 +3,15 @@
 const yargs = require('yargs');
 
 const request = yargs
-    .command({
-      command: 'request <game>',
-      describe: 'Request to the Battle.net API',
+  .command({
+      command: 'wow <endpoint>',
+      describe: 'World of Warcraft game API request to the Battle.net API',
       builder: (yargs) => yargs
-        .commandDir('request')
+        .commandDir('wow')
         .demandCommand(1),
       handler: (argv) => {
       }
-        }
-    ).argv;
+    }
+  ).argv;
 
 module.exports = request;
