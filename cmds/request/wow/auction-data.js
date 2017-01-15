@@ -18,9 +18,9 @@ const request = yargs
         .demandOption(['realm'], 'Please provide at least the [realm] of the {auction/data}');
     },
     handler: argv => {
-      const { origin, realm } = argv;
+      const { origin, locale, realm } = argv;
 
-      return blizzard.wow.aunction({ origin, realm })
+      return blizzard.wow.aunction({ origin, locale, realm })
         .then(response => {
           console.log(JSON.stringify(response.data));
         });

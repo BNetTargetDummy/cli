@@ -34,9 +34,9 @@ const request = yargs
         .demandOption(['id'], 'Please provide at least the [id] of the {pet/stats}');
     },
     handler: argv => {
-      const { origin, id, level, breed, quality } = argv;
+      const { origin, locale, id, level, breed, quality } = argv;
 
-      return blizzard.wow.item(['stat'], { origin, id, level, breed, quality })
+      return blizzard.wow.item(['stat'], { origin, locale, id, level, breed, quality })
         .then(response => {
           console.log(JSON.stringify(response.data));
         });

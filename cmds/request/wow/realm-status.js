@@ -18,9 +18,9 @@ const request = yargs
         });
     },
     handler: argv => {
-      const { origin, realms } = argv;
+      const { origin, locale, realms } = argv;
 
-      return blizzard.wow.realms({ origin, realms })
+      return blizzard.wow.realms({ origin, locale, realms })
         .then(response => {
           console.log(JSON.stringify(response.data));
         });

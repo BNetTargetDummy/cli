@@ -18,9 +18,9 @@ const request = yargs
         });
     },
     handler: argv => {
-      const { origin, id } = argv;
+      const { origin, locale, id } = argv;
 
-      return blizzard.wow.zone({ origin, id })
+      return blizzard.wow.zone({ origin, locale, id })
         .then(response => {
           console.log(JSON.stringify(response.data));
         });

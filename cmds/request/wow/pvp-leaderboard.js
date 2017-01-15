@@ -20,9 +20,9 @@ const request = yargs
         .demandOption(['bracket'], 'Please provide at least the [bracket] of the {pvp/leaderboard}');
     },
     handler: argv => {
-      const { origin, bracket } = argv;
+      const { origin, locale, bracket } = argv;
 
-      return blizzard.wow.pvp({ origin, bracket })
+      return blizzard.wow.pvp({ origin, locale, bracket })
         .then(response => {
           console.log(JSON.stringify(response.data));
         });

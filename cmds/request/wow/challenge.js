@@ -18,9 +18,9 @@ const request = yargs
         .demandOption(['id'], 'Please provide at least the [id] of the {challenge}');
     },
     handler: argv => {
-      const { origin, realm } = argv;
+      const { origin, locale, realm } = argv;
 
-      return blizzard.wow.challenge({ origin, realm })
+      return blizzard.wow.challenge({ origin, locale, realm })
         .then(response => {
           console.log(JSON.stringify(response.data));
         });

@@ -10,9 +10,10 @@ const request = yargs
     builder: (yargs) => {
       return yargs;
     },
-    handler: argv => {
-      const { origin } = argv;
-      return blizzard.wow.data(['characters', 'achievements'], { origin })
+    handler: (argv) => {
+      const { origin, locale } = argv;
+
+      return blizzard.wow.data(['characters', 'achievements'], { origin, locale })
         .then(response => {
           console.log(JSON.stringify(response.data));
         });

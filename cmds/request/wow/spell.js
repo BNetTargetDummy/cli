@@ -19,9 +19,9 @@ const request = yargs
         .demandOption(['id'], 'Please provide at least the [id] of the {spell}');
     },
     handler: argv => {
-      const { origin, id } = argv;
+      const { origin, locale, id } = argv;
 
-      return blizzard.wow.spell({ origin, id })
+      return blizzard.wow.spell({ origin, locale, id })
         .then(response => {
           console.log(JSON.stringify(response.data));
         });

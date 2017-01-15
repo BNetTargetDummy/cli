@@ -24,11 +24,9 @@ const request = yargs
         .demandOption(['realm', 'name'], 'Please provide at least the [realm] and [name] of the {character}');
     },
     handler: (argv) => {
-      const { origin, realm, name } = argv;
-      const test = { origin, realm, name };
-      console.log(test);
+      const { origin, locale, realm, name } = argv;
 
-      return blizzard.wow.character(['profile'], { origin, realm, name })
+      return blizzard.wow.character(['profile'], { origin, locale, realm, name })
         .then(response => {
           console.log(JSON.stringify(response.data));
         });

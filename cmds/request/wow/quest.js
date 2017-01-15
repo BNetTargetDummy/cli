@@ -19,9 +19,9 @@ const request = yargs
         .demandOption(['id'], 'Please provide at least the [id] of the {quest}');
     },
     handler: argv => {
-      const { origin, id } = argv;
+      const { origin, locale, id } = argv;
 
-      return blizzard.wow.item({ origin, id })
+      return blizzard.wow.item({ origin, locale, id })
         .then(response => {
           console.log(JSON.stringify(response.data));
         });

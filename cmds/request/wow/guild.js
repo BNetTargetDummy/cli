@@ -24,9 +24,9 @@ const guild = yargs
         .demandOption(['realm', 'name'], 'Please provide at least the [realm] and [name] of the {guild}');
     },
     handler: (argv) => {
-      const { origin, realm, name } = argv;
+      const { origin, locale, realm, name } = argv;
 
-      return blizzard.wow.guild(['profile'], { origin, realm, name })
+      return blizzard.wow.guild(['profile'], { origin, locale, realm, name })
         .then(response => {
           console.log(JSON.stringify(response.data));
         });

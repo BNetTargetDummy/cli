@@ -18,9 +18,9 @@ const request = yargs
         .demandOption(['id'], 'Please provide at least the [id] of the {achievement}');
     },
     handler: argv => {
-      const { origin, id } = argv;
+      const { origin, locale, id } = argv;
 
-      return blizzard.wow.achievement({ origin, id })
+      return blizzard.wow.achievement({ origin, locale, id })
         .then(response => {
           console.log(JSON.stringify(response.data));
         });

@@ -11,8 +11,9 @@ const request = yargs
       return yargs;
     },
     handler: (argv) => {
-      const { origin } = argv;
-      return blizzard.wow.data(['guild', 'rewards'], { origin })
+      const { origin, locale } = argv;
+
+      return blizzard.wow.data(['guild', 'rewards'], { origin, locale })
         .then(response => {
           console.log(JSON.stringify(response.data));
         });
