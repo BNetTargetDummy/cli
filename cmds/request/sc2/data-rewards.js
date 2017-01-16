@@ -5,23 +5,15 @@ const blizzard = require('blizzard.js').initialize({ apikey: process.env.BATTLEN
 
 const request = yargs
   .command({
-    command: 'data-achievements',
-    describe: 'Fetch Starcraft 2 Rewards',
+    command: 'data-rewards',
+    describe: 'Fetch all Starcraft 2 Rewards',
     builder: (yargs) => {
-      return yargs
-        .options({
-          origin: {
-            alias: 'o',
-            describe: 'The API endpoint to make the request to',
-            choices: ['us', 'eu'],
-            default: 'us',
-          },
-        });
+      return yargs;
     },
     handler: argv => {
-      const { origin } = argv;
+      const { origin, locale } = argv;
 
-      return blizzard.d3.data(['reward'], { origin })
+      return blizzard.sc2.data('rewards', { origin, locale })
         .then(response => {
           console.log(JSON.stringify(response.data));
         });

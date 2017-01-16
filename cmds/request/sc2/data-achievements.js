@@ -8,20 +8,12 @@ const request = yargs
     command: 'data-achievements',
     describe: 'Fetch all Starcraft 2 Achievements',
     builder: (yargs) => {
-      return yargs
-        .options({
-          origin: {
-            alias: 'o',
-            describe: 'The API endpoint to make the request to',
-            choices: ['us', 'eu'],
-            default: 'us',
-          },
-        });
+      return yargs;
     },
     handler: argv => {
-      const { origin } = argv;
+      const { origin, locale } = argv;
 
-      return blizzard.d3.data(['achievements'], { origin })
+      return blizzard.sc2.data('achievements', { origin, locale })
         .then(response => {
           console.log(JSON.stringify(response.data));
         });

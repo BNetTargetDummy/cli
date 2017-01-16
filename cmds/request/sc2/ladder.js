@@ -10,24 +10,18 @@ const request = yargs
     builder: (yargs) => {
       return yargs
         .options({
-          origin: {
-            alias: 'o',
-            describe: 'The API endpoint to make the request to',
-            choices: ['us', 'eu'],
-            default: 'us',
-          },
           id: {
             alias: 'i',
             describe: 'The [id] of the {ladder}',
             type: 'number',
           },
         })
-        .demandOption(['id'], 'Please provide at least the [id] of the {ladder}');
+        .demandOption(['id'], 'Please specify the [id] of the {ladder}');
     },
     handler: argv => {
-      const { origin, data } = argv;
+      const { origin, locale } = argv;
 
-      return blizzard.d3.data(['follower'], { origin, data })
+      return blizzard.sc2.ladder({ origin, locale })
         .then(response => {
           console.log(JSON.stringify(response.data));
         });

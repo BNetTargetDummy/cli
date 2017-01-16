@@ -5,30 +5,34 @@ const blizzard = require('blizzard.js').initialize({ apikey: process.env.BATTLEN
 
 const request = yargs
   .command({
-    command: 'data-achievements',
-    describe: 'Fetch a Starcraft 2 Data Artisan',
+    command: 'profile-ladders',
+    describe: 'Fetch Starcraft 2 Profile ladders',
     builder: (yargs) => {
       return yargs
         .options({
-          origin: {
-            alias: 'o',
-            describe: 'The API endpoint to make the request to',
-            choices: ['us', 'eu'],
-            default: 'us',
+          id: {
+            alias: 'i',
+            describe: 'The [id] of the {profile}',
+            type: 'number',
           },
-          follower: {
-            alias: 'f',
-            describe: 'The [realm] of the {character}',
-            choices: ['blacksmith', 'jeweler', 'mystic'],
-            default: 'blacksmith',
+          region: {
+            alias: 'r',
+            describe: 'The [region] of the {profile}',
+            default: 1,
+            type: 'number',
+          },
+          name: {
+            alias: 'n',
+            describe: 'The [name] of the {profile}',
+            type: 'string',
           },
         })
-        .demandOption(['follower'], 'Please provide at least the realm and name of the character');
+        .demandOption(['id', 'region', 'name'], 'Please provide at least the [id] and [name] of the {profile}');
     },
     handler: argv => {
-      const { origin, data } = argv;
+      const { origin, locale, id, region, name } = argv;
 
-      return blizzard.d3.data(['data', 'item'], { origin, data })
+      return blizzard.sc2.profile('ladders', { origin, locale, id, region, name })
         .then(response => {
           console.log(JSON.stringify(response.data));
         });

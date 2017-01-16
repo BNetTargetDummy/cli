@@ -5,17 +5,11 @@ const blizzard = require('blizzard.js').initialize({ apikey: process.env.BATTLEN
 
 const request = yargs
   .command({
-    command: 'prifle',
+    command: 'profile',
     describe: 'Fetch a Starcraft 2 Profile',
     builder: (yargs) => {
       return yargs
         .options({
-          origin: {
-            alias: 'o',
-            describe: 'The API endpoint to make the request to',
-            choices: ['us', 'eu'],
-            default: 'us',
-          },
           id: {
             alias: 'i',
             describe: 'The [id] of the {profile}',
@@ -24,7 +18,8 @@ const request = yargs
           region: {
             alias: 'r',
             describe: 'The [region] of the {profile}',
-            type: 'string',
+            default: 1,
+            type: 'number',
           },
           name: {
             alias: 'n',
@@ -32,12 +27,12 @@ const request = yargs
             type: 'string',
           },
         })
-        .demandOption(['id', 'region', 'name'], 'Please provide at least the [id], [region], and [name] of the {data/achievements}');
+        .demandOption(['id', 'name'], 'Please provide at least the [id] and [name] of the {profile}');
     },
     handler: argv => {
-      const { origin, id, region, name } = argv;
+      const { origin, locale, id, region, name } = argv;
 
-      return blizzard.d3.data({ origin, id, region, name })
+      return blizzard.sc2.profile('profile', { origin, locale, id, region, name })
         .then(response => {
           console.log(JSON.stringify(response.data));
         });
