@@ -12,7 +12,7 @@ const request = yargs
         .options({
           follower: {
             alias: 'f',
-            describe: 'The [follower] of the {data/follower}',
+            describe: 'The [id] of the {follower}',
             choices: ['enchantress', 'scoundrel', 'templar'],
             default: 'templar',
           },
@@ -22,7 +22,7 @@ const request = yargs
     handler: argv => {
       const { origin, locale, follower } = argv;
 
-      return blizzard.d3.data(['follower'], { origin, locale, follower })
+      return blizzard.d3.data('follower', { origin, locale, follower })
         .then(response => {
           console.log(JSON.stringify(response.data));
         });

@@ -12,7 +12,7 @@ const request = yargs
         .options({
           item: {
             alias: 'i',
-            describe: 'The [item] of the {data/item}',
+            describe: 'The [id] of the {item}',
             type: 'string',
           },
         })
@@ -21,7 +21,7 @@ const request = yargs
     handler: argv => {
       const { origin, locale, item } = argv;
 
-      return blizzard.d3.data(['item'], { origin, locale, item })
+      return blizzard.d3.data('item', { origin, locale, item })
         .then(response => {
           console.log(JSON.stringify(response.data));
         });

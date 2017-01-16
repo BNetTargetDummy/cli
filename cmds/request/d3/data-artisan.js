@@ -17,12 +17,12 @@ const request = yargs
             default: 'blacksmith',
           },
         })
-        .demandOption(['artisan'], 'Please provide specify the [artisan]');
+        .demandOption(['artisan'], 'Please specify the [artisan]');
     },
     handler: argv => {
       const { origin, locale, artisan } = argv;
 
-      return blizzard.d3.data(['artisan'], { origin, locale, artisan })
+      return blizzard.d3.data('artisan', { origin, locale, artisan })
         .then(response => {
           console.log(JSON.stringify(response.data));
         });
