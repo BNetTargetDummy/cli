@@ -5,25 +5,31 @@ const blizzard = require('blizzard.js').initialize({ apikey: process.env.BATTLEN
 
 const request = yargs
   .command({
-    command: 'pet-ability',
-    describe: 'Fetch a World of Warcraft Achievement',
-    builder: (yargs) => {
+    command: 'item',
+    describe: 'Fetch a World of Warcraft item or set',
+    builder: yargs => {
       return yargs
         .options({
           id: {
             alias: 'i',
-            describe: 'The [id] of the {item/set}',
+            describe: 'The [id] of the {item}',
+            type: 'number',
+            demand: true,
           },
-        })
-        .demandOption(['id'], 'Please provide at least the [id] of the {pet-ability}');
-    },
-    handler: (argv) => {
-      const { origin, locale, realm } = argv;
-
-      return blizzard.wow.item({ origin, locale, realm })
-        .then(response => {
-          console.log(JSON.stringify(response.data));
+          set: {
+            alias: 's',
+            describe: 'Whether this [id] is for a {set}',
+            type: 'boolean',
+            default: false,
+          },
         });
+    },
+    handler: argv => {
+      const { origin, locale, id, set } = argv;
+
+      return blizzard.wow.item({ origin, locale, id, set })
+        .then(response => console.log(JSON.stringify(response.data)))
+        .catch(err => console.log(JSON.stringify(err.response.data)));
     },
   }).argv;
 
