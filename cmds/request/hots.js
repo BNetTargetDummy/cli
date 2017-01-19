@@ -4,7 +4,7 @@ const yargs = require('yargs');
 
 const request = yargs
   .command({
-    command: 'hos',
+    command: 'hots',
     describe: 'Perform a Heroes of the Storm request to the Battle.net API',
     builder: (yargs) => yargs,
     handler: (argv) => {
