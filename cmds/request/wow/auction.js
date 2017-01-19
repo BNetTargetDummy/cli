@@ -5,25 +5,24 @@ const blizzard = require('blizzard.js').initialize({ apikey: process.env.BATTLEN
 
 const request = yargs
   .command({
-    command: 'auction-data',
-    describe: 'Fetch a World of Warcraft Auction Data',
+    command: 'auction',
+    describe: 'Fetch World of Warcraft auction house data',
     builder: (yargs) => {
       return yargs
         .options({
           realm: {
             alias: 'r',
-            describe: 'The [realm] of the {auction/data}',
+            describe: 'The auction house [realm]',
+            demand: true,
           },
-        })
-        .demandOption(['realm'], 'Please provide at least the [realm] of the {auction/data}');
+        });
     },
     handler: argv => {
       const { origin, locale, realm } = argv;
 
       return blizzard.wow.aunction({ origin, locale, realm })
-        .then(response => {
-          console.log(JSON.stringify(response.data));
-        });
+        .then(response => console.log(JSON.stringify(response.data)))
+        .catch(err => console.log(JSON.stringify(err.response.data)));
     },
   }).argv;
 
