@@ -6,14 +6,28 @@ const blizzard = require('blizzard.js').initialize({ apikey: process.env.BATTLEN
 const request = yargs
   .command({
     command: 'profile',
-    describe: 'Fetch a Starcraft 2 Profile',
-    builder: (yargs) => {
+    describe: 'Fetch a Starcraft 2 profile',
+    builder: yargs => {
       return yargs
         .options({
+          key: {
+            alias: 'k',
+            describe: 'The {profile} resource to be requested',
+            choices: ['profile', 'ladders', 'matches'],
+            default: 'profile',
+            type: 'string',
+          },
           id: {
             alias: 'i',
             describe: 'The [id] of the {profile}',
             type: 'number',
+            demand: true,
+          },
+          name: {
+            alias: 'n',
+            describe: 'The [name] of the {profile}',
+            type: 'string',
+            demand: true,
           },
           region: {
             alias: 'r',
@@ -21,21 +35,14 @@ const request = yargs
             default: 1,
             type: 'number',
           },
-          name: {
-            alias: 'n',
-            describe: 'The [name] of the {profile}',
-            type: 'string',
-          },
-        })
-        .demandOption(['id', 'name'], 'Please provide at least the [id] and [name] of the {profile}');
+        });
     },
     handler: argv => {
-      const { origin, locale, id, region, name } = argv;
+      const { origin, locale, key, id, name, region } = argv;
 
-      return blizzard.sc2.profile('profile', { origin, locale, id, region, name })
-        .then(response => {
-          console.log(JSON.stringify(response.data));
-        });
+      return blizzard.sc2.profile(key, { origin, locale, id, name, region })
+        .then(response => console.log(JSON.stringify(response.data)))
+        .catch(err => console.log(JSON.stringify(err.response.data)));
     },
   }).argv;
 
