@@ -6,31 +6,31 @@ const blizzard = require('blizzard.js').initialize({ apikey: process.env.BATTLEN
 const request = yargs
   .command({
     command: 'data',
-    describe: 'Fetch a Diablo 3 Data resource',
-    builder: (yargs) => {
+    describe: 'Fetch a Diablo 3 data resource',
+    builder: yargs => {
       return yargs
         .options({
           key: {
             alias: 'k',
-            describe: 'The data to be requested',
+            describe: 'The data key to be requested',
             choices: ['artisan', 'follower', 'item'],
             type: 'string',
+            demand: true,
           },
           id: {
             alias: 'i',
             describe: 'The [id] of the {key}',
             type: 'string',
+            demand: true,
           },
-        })
-        .demandOption(['key', 'id'], 'Please specify the [key] and [id] of the resource');
+        });
     },
     handler: argv => {
       const { origin, locale, key, id } = argv;
 
       return blizzard.d3.data(key, { origin, locale, id })
-        .then(response => {
-          console.log(JSON.stringify(response.data));
-        });
+        .then(response => console.log(JSON.stringify(response.data)))
+        .catch(err => console.log(JSON.stringify(err.response.data)));
     },
   }).argv;
 
