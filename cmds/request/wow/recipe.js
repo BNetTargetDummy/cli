@@ -6,25 +6,24 @@ const blizzard = require('blizzard.js').initialize({ apikey: process.env.BATTLEN
 const request = yargs
   .command({
     command: 'recipe',
-    describe: 'Fetch a World of Warcraft Recipe',
-    builder: (yargs) => {
+    describe: 'Fetch a World of Warcraft recipe',
+    builder: yargs => {
       return yargs
         .options({
           id: {
             alias: 'i',
             describe: 'The [id] of the {recipe}',
             type: 'number',
+            demand: true,
           },
-        })
-        .demandOption(['id'], 'Please provide at least the [id] of the {recipe}');
+        });
     },
     handler: argv => {
       const { origin, locale, id } = argv;
 
       return blizzard.wow.recipe({ origin, locale, id })
-        .then(response => {
-          console.log(JSON.stringify(response.data));
-        });
+        .then(response => console.log(JSON.stringify(response.data)))
+        .catch(err => console.log(JSON.stringify(err.response.data)));
     },
   }).argv;
 

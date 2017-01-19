@@ -20,7 +20,7 @@ const request = yargs
     handler: argv => {
       const { origin, locale, realm } = argv;
 
-      return blizzard.wow.aunction({ origin, locale, realm })
+      return blizzard.wow.auction({ origin, locale, realm })
         .then(response => console.log(JSON.stringify(response.data)))
         .catch(err => console.log(JSON.stringify(err.response.data)));
     },

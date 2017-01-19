@@ -6,24 +6,23 @@ const blizzard = require('blizzard.js').initialize({ apikey: process.env.BATTLEN
 const request = yargs
   .command({
     command: 'achievement',
-    describe: 'Fetch a World of Warcraft Achievement',
-    builder: (yargs) => {
+    describe: 'Fetch a World of Warcraft achievement',
+    builder: yargs => {
       return yargs
         .options({
           id: {
             alias: 'i',
             describe: 'The [id] of the {achievement}',
+            demand: true,
           },
-        })
-        .demandOption(['id'], 'Please provide at least the [id] of the {achievement}');
+        });
     },
     handler: argv => {
       const { origin, locale, id } = argv;
 
       return blizzard.wow.achievement({ origin, locale, id })
-        .then(response => {
-          console.log(JSON.stringify(response.data));
-        });
+        .then(response => console.log(JSON.stringify(response.data)))
+        .catch(err => console.log(JSON.stringify(err.response.data)));
     },
   }).argv;
 

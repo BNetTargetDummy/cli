@@ -6,24 +6,22 @@ const blizzard = require('blizzard.js').initialize({ apikey: process.env.BATTLEN
 const request = yargs
   .command({
     command: 'boss',
-    describe: 'Fetch a World of Warcraft Boss',
-    builder: (yargs) => {
+    describe: 'Fetch World of Warcraft boss data',
+    builder: yargs => {
       return yargs
         .options({
           id: {
             alias: 'i',
             describe: 'The [id] of the {boss}',
           },
-        })
-        .demandOption(['id'], 'Please provide at least the [id] of the {boss}');
+        });
     },
     handler: argv => {
       const { origin, locale, id } = argv;
 
-      return blizzard.wow.aunction({ origin, locale, id })
-        .then(response => {
-          console.log(JSON.stringify(response.data));
-        });
+      return blizzard.wow.boss({ origin, locale, id: id || '' })
+        .then(response => console.log(JSON.stringify(response.data)))
+        .catch(err => console.log(JSON.stringify(err.response.data)));
     },
   }).argv;
 

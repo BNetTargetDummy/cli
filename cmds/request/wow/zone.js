@@ -6,24 +6,24 @@ const blizzard = require('blizzard.js').initialize({ apikey: process.env.BATTLEN
 const request = yargs
   .command({
     command: 'zone',
-    describe: 'Fetch a World of Warcraft Zone',
-    builder: (yargs) => {
+    describe: 'Fetch a World of Warcraft zone',
+    builder: yargs => {
       return yargs
         .options({
           id: {
             alias: 'i',
             describe: 'The [id] of the {zone}',
-            type: 'id',
+            type: 'number',
+            demand: true,
           },
         });
     },
     handler: argv => {
       const { origin, locale, id } = argv;
 
-      return blizzard.wow.zone({ origin, locale, id })
-        .then(response => {
-          console.log(JSON.stringify(response.data));
-        });
+      return blizzard.wow.zone({ origin, locale, id: id || '' })
+        .then(response => console.log(JSON.stringify(response.data)))
+        .catch(err => console.log(JSON.stringify(err.response.data)));
     },
   }).argv;
 

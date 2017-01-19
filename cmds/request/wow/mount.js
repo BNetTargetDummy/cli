@@ -6,17 +6,16 @@ const blizzard = require('blizzard.js').initialize({ apikey: process.env.BATTLEN
 const request = yargs
   .command({
     command: 'mount',
-    describe: 'Fetch a World of Warcraft Mount',
-    builder: (yargs) => {
+    describe: 'Fetch World of Warcraft mount data',
+    builder: yargs => {
       return yargs;
     },
-    handler: (argv) => {
+    handler: argv => {
       const { origin, locale } = argv;
 
       return blizzard.wow.mount({ origin, locale })
-        .then(response => {
-          console.log(JSON.stringify(response.data));
-        });
+        .then(response => console.log(JSON.stringify(response.data)))
+        .catch(err => console.log(JSON.stringify(err.response.data)));
     },
   }).argv;
 
