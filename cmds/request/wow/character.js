@@ -7,29 +7,36 @@ const request = yargs
   .command({
     command: 'character',
     describe: 'Fetch a World of Warcraft Character',
-    builder: (yargs) => {
+    builder: yargs => {
       return yargs
         .options({
           realm: {
             alias: 'r',
             describe: 'The [realm] of the {character}',
             type: 'string',
+            demand: true,
           },
           name: {
             alias: 'n',
             describe: 'The [name] of the {character}',
             type: 'string',
+            demand: true,
           },
-        })
-        .demandOption(['realm', 'name'], 'Please provide at least the [realm] and [name] of the {character}');
-    },
-    handler: (argv) => {
-      const { origin, locale, realm, name } = argv;
-
-      return blizzard.wow.character(['profile'], { origin, locale, realm, name })
-        .then(response => {
-          console.log(JSON.stringify(response.data));
+          fields: {
+            alias: 'f',
+            describe: 'A list of one or more [fields] belonging to the {character}',
+            choices: ['profile', 'achievements', 'appearance', 'audit', 'feed', 'guild', 'hunterPets', 'items', 'mounts', 'pets', 'petSlots', 'professions', 'progression', 'pvp', 'quests', 'reputation', 'statistics', 'stats', 'talents', 'titles'],
+            default: 'profile',
+            array: true,
+          },
         });
+    },
+    handler: argv => {
+      const { origin, locale, realm, name, fields } = argv;
+
+      return blizzard.wow.character(fields, { origin, locale, realm, name })
+        .then(response => console.log(JSON.stringify(response.data)))
+        .catch(err => console.log(JSON.stringify(err.response.data)));
     },
   }).argv;
 
