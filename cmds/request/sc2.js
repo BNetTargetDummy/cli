@@ -2,28 +2,15 @@
 
 const yargs = require('yargs');
 
-const request = yargs
+const sc2 = yargs
   .command({
     command: 'sc2 <resource>',
     describe: 'Perform a Starcraft 2 request to the Battle.net API',
-    builder: (yargs) => yargs
-      .options({
-        origin: {
-          alias: 'o',
-          describe: 'The API endpoint to make the request to',
-          choices: ['us', 'eu', 'kr', 'tw', 'sea', 'cn'],
-          default: 'us',
-        },
-        locale: {
-          alias: 'l',
-          describe: 'A language locale code matching the origin endpoint',
-        },
-      })
-      .global(['origin', 'locale'])
+    builder: yargs => yargs
       .commandDir('sc2')
       .demandCommand(1),
-    handler: (argv) => {
+    handler: argv => {
     },
   }).argv;
 
-module.exports = request;
+module.exports = sc2;

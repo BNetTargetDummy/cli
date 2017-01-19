@@ -2,28 +2,15 @@
 
 const yargs = require('yargs');
 
-const request = yargs
+const d3 = yargs
   .command({
-    command: 'd3 <endpoint>',
+    command: 'd3 <resource>',
     describe: 'Perform a Diablo 3 request to the Battle.net API',
-    builder: (yargs) => yargs
-      .options({
-        origin: {
-          alias: 'o',
-          describe: 'The API endpoint to make the request to',
-          choices: ['us', 'eu', 'kr', 'tw', 'cn'],
-          default: 'us',
-        },
-        locale: {
-          alias: 'l',
-          describe: 'A language locale code matching the origin endpoint',
-        },
-      })
-      .global(['origin', 'locale'])
+    builder: yargs => yargs
       .commandDir('d3')
       .demandCommand(1),
-    handler: (argv) => {
+    handler: argv => {
     },
   }).argv;
 
-module.exports = request;
+module.exports = d3;
