@@ -5,14 +5,14 @@ const blizzard = require('blizzard.js').initialize({ apikey: process.env.BATTLEN
 
 const request = yargs
   .command({
-    command: 'realm-status',
-    describe: 'Fetch a World of Warcraft Realm Status',
-    builder: (yargs) => {
+    command: 'realms',
+    describe: 'Fetch World of Warcraft realm list and status',
+    builder: yargs => {
       return yargs
         .options({
           realms: {
             alias: 'r',
-            describe: 'The [id] of the {item}',
+            describe: 'One or more [realms] to fetch. Omit for all realms',
             type: 'array',
           },
         });
@@ -21,9 +21,8 @@ const request = yargs
       const { origin, locale, realms } = argv;
 
       return blizzard.wow.realms({ origin, locale, realms })
-        .then(response => {
-          console.log(JSON.stringify(response.data));
-        });
+        .then(response => console.log(JSON.stringify(response.data)))
+        .catch(err => console.log(JSON.stringify(err.response.data)));
     },
   }).argv;
 
