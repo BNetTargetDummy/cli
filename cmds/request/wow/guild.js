@@ -6,30 +6,37 @@ const blizzard = require('blizzard.js').initialize({ apikey: process.env.BATTLEN
 const guild = yargs
   .command({
     command: 'guild',
-    describe: 'Fetch a World of Warcraft Guild',
-    builder: (yargs) => {
+    describe: 'Fetch a World of Warcraft guild',
+    builder: yargs => {
       return yargs
         .options({
           realm: {
             alias: 'r',
             describe: 'The [realm] of the {guild}',
             type: 'string',
+            demand: true,
           },
           name: {
             alias: 'n',
             describe: 'The name of the guild',
             type: 'string',
+            demand: true,
           },
-        })
-        .demandOption(['realm', 'name'], 'Please provide at least the [realm] and [name] of the {guild}');
-    },
-    handler: (argv) => {
-      const { origin, locale, realm, name } = argv;
-
-      return blizzard.wow.guild(['profile'], { origin, locale, realm, name })
-        .then(response => {
-          console.log(JSON.stringify(response.data));
+          fields: {
+            alias: 'f',
+            describe: 'A list of one or more [fields] belonging to the {guild}',
+            choices: ['profile', 'achievements', 'members', 'news', 'challenge'],
+            default: 'profile',
+            array: true,
+          },
         });
+    },
+    handler: argv => {
+      const { origin, locale, realm, name, fields } = argv;
+
+      return blizzard.wow.guild(fields, { origin, locale, realm, name })
+        .then(response => console.log(JSON.stringify(response.data)))
+        .catch(err => console.log(JSON.stringify(err.response.data)));
     },
   }).argv;
 
