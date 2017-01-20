@@ -6,7 +6,7 @@ const blizzard = require('blizzard.js').initialize({ apikey: process.env.BATTLEN
 const request = yargs
   .command({
     command: 'character',
-    describe: 'Fetch a World of Warcraft Character',
+    describe: 'Fetch a World of Warcraft character',
     builder: yargs => {
       return yargs
         .options({
