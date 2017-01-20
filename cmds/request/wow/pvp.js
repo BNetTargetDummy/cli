@@ -5,27 +5,26 @@ const blizzard = require('blizzard.js').initialize({ apikey: process.env.BATTLEN
 
 const request = yargs
   .command({
-    command: 'pvp-leaderboard',
-    describe: 'Fetch a World of Warcraft PvP Bracket',
-    builder: (yargs) => {
+    command: 'pvp',
+    describe: 'Fetch a World of Warcraft PvP bracket',
+    builder: yargs => {
       return yargs
         .options({
           bracket: {
             alias: 'b',
-            describe: 'The [bracket] of the {pvp/leaderboard}',
+            describe: 'The [bracket] of the PvP leaderboard',
             choices: ['2v2', '3v3', '5v5', 'rgb'],
             type: 'string',
+            demand: true,
           },
-        })
-        .demandOption(['bracket'], 'Please provide at least the [bracket] of the {pvp/leaderboard}');
+        });
     },
     handler: argv => {
       const { origin, locale, bracket } = argv;
 
       return blizzard.wow.pvp({ origin, locale, bracket })
-        .then(response => {
-          console.log(JSON.stringify(response.data));
-        });
+        .then(response => console.log(JSON.stringify(response.data)))
+        .catch(err => console.log(JSON.stringify(err.response.data)));
     },
   }).argv;
 
