@@ -31,6 +31,7 @@ $ td request wow <command>
 #### boss
 
   - `--id, -i` [Number] - the boss ID
+    - omit for all bosses
 
 #### challenge
 
@@ -71,7 +72,7 @@ $ td request wow <command>
   - `--key, -k` String - the key of the pet data
     - choices: `list`, `ability`, `species`, `stats`
     - default: `list`
-  - `--id, -i` [String] - the pet abilities of species ID
+  - `--id, -i` [String] - the pet abilities or species ID
   - `--level, -e` [Number] - the pet level
   - `--breed, -d` [Number] - the pet breed
   - `--quality, -q` [Number] - the pet quality
