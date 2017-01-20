@@ -12,10 +12,10 @@ const request = yargs
         .options({
           key: {
             alias: 'k',
-            describe: 'The data key to be requested',
+            describe: 'The {data} key to be requested',
             choices: ['achievements', 'rewards'],
-            demand: true,
             type: 'string',
+            demand: true,
           },
         });
     },
