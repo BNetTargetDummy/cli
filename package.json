@@ -14,6 +14,7 @@
     "url": "https://github.com/bnettargetdummy/console.git"
   },
   "dependencies": {
+    "@targetdummy/logger": "BNetTargetDummy/logger",
     "blizzard.js": "^1.6.0",
     "mocha": "^3.2.0",
     "sequelize": "^3.29.0",
