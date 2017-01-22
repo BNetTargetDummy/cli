@@ -10,6 +10,7 @@
   "author": "Ben Weier <ben.weier@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "@targetdummy/logger": "BNetTargetDummy/logger",
     "blizzard.js": "^1.6.0",
     "yargs": "^6.6.0"
   },
