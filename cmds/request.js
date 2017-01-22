@@ -20,6 +20,17 @@ const request = yargs
           describe: 'A language locale code matching the origin endpoint',
           global: true,
         },
+        target: {
+          type: 'string',
+          choices: ['console', 'file'],
+          default: 'console',
+          global: true,
+        },
+        filename: {
+          type: 'string',
+          default: 'targetdummy.log',
+          global: true,
+        },
       })
       .commandDir('request')
       .demandCommand(1),
