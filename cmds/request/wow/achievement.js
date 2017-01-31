@@ -2,6 +2,7 @@
 
 const yargs = require('yargs');
 const blizzard = require('blizzard.js').initialize({ apikey: process.env.BATTLENET_CLIENT_ID });
+const logger = require('@targetdummy/logger');
 
 const request = yargs
   .command({
@@ -21,8 +22,8 @@ const request = yargs
       const { origin, locale, id } = argv;
 
       return blizzard.wow.achievement({ origin, locale, id })
-        .then(response => console.log(JSON.stringify(response.data)))
-        .catch(err => console.log(JSON.stringify(err.response.data)));
+        .then(response => logger(argv.target, argv.filename).info(response.data))
+        .catch(err => logger(argv.target, argv.filename).error(err.response.data));
     },
   }).argv;
 
