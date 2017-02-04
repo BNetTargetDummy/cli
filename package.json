@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@targetdummy/logger": "BNetTargetDummy/logger",
+    "async": "^2.1.4",
     "blizzard.js": "^1.6.0",
     "mocha": "^3.2.0",
     "sequelize": "^3.29.0",
