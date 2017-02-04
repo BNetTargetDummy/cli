@@ -1,11 +1,9 @@
 #! /usr/bin/env node
-const path = require('path');
-const models = rootRequire('models');
 
 const yargs = require('yargs');
-const blizzard = require('blizzard.js').initialize({ apikey: process.env.BATTLENET_CLIENT_ID });
+const logger = require('../../../lib/logger');
 
-const request = yargs
+const character = yargs
   .command({
     command: 'character',
     describe: 'Fetch a World of Warcraft character',
@@ -33,36 +31,7 @@ const request = yargs
           },
         });
     },
-    handler: argv => {
-
-      const { origin, locale, realm, name, fields } = argv;
-      const arguments = { origin, locale, realm, name, fields };
-      console.log(arguments);
-      RecentRequest.findAll({
-        where: {
-          command: 'character'
-        }
-      }).then(requests => {
-        for(let request in requests) {
-          let result = {};
-          if(requests.hasOwnProperty(request) && request.arguments === arguments) {
-            result = request.response;
-          } else {
-            blizzard.wow.character(fields, arguments)
-              .then(response =>
-                result = response.data,
-                RecentRequest.create({
-                  command: 'character',
-                  arguments: arguments,
-                  header: response.header,
-                  body: response.body
-                })
-              )
-              .catch(err => console.log(JSON.stringify(err.response.data)));
-          }
-        }
-      });
-    },
+    handler: argv => logger('character', argv),
   }).argv;
 
-module.exports = request;
+module.exports = character;

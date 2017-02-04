@@ -1,7 +1,7 @@
 #! /usr/bin/env node
 
 const yargs = require('yargs');
-const blizzard = require('blizzard.js').initialize({ apikey: process.env.BATTLENET_CLIENT_ID });
+const logger = require('../../../lib/logger');
 
 const guild = yargs
   .command({
@@ -31,13 +31,7 @@ const guild = yargs
           },
         });
     },
-    handler: argv => {
-      const { origin, locale, realm, name, fields } = argv;
-
-      return blizzard.wow.guild(fields, { origin, locale, realm, name })
-        .then(response => console.log(JSON.stringify(response.data)))
-        .catch(err => console.log(JSON.stringify(err.response.data)));
-    },
+    handler: argv => logger('guild', argv),
   }).argv;
 
 module.exports = guild;
