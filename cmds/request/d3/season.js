@@ -1,7 +1,7 @@
 #! /usr/bin/env node
 
 const yargs = require('yargs');
-const blizzard = require('blizzard.js').initialize({ apikey: process.env.BATTLENET_CLIENT_ID });
+const logger = require('../../../lib/logger');
 
 const request = yargs
   .command({
@@ -25,13 +25,7 @@ const request = yargs
           },
         });
     },
-    handler: argv => {
-      const { origin, locale, id, leaderboard, token } = argv;
-
-      return blizzard.d3.season({ origin, locale, id, leaderboard, access_token: token })
-        .then(response => console.log(JSON.stringify(response.data)))
-        .catch(err => console.log(JSON.stringify(err.response.data)));
-    },
+    handler: argv => logger('d3', 'season', argv),
   }).argv;
 
 module.exports = request;

@@ -31,7 +31,7 @@ const guild = yargs
           },
         });
     },
-    handler: argv => logger('guild', argv),
+    handler: argv => logger('wow', 'guild', argv),
   }).argv;
 
 module.exports = guild;

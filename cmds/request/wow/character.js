@@ -31,7 +31,7 @@ const character = yargs
           },
         });
     },
-    handler: argv => logger('character', argv),
+    handler: argv => logger('wow', 'character', argv),
   }).argv;
 
 module.exports = character;

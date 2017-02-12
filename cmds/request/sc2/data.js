@@ -1,7 +1,7 @@
 #! /usr/bin/env node
 
 const yargs = require('yargs');
-const blizzard = require('blizzard.js').initialize({ apikey: process.env.BATTLENET_CLIENT_ID });
+const logger = require('../../../lib/logger');
 
 const request = yargs
   .command({
@@ -19,13 +19,7 @@ const request = yargs
           },
         });
     },
-    handler: argv => {
-      const { origin, locale, key } = argv;
-
-      return blizzard.sc2.data(key, { origin, locale, key })
-        .then(response => console.log(response.data))
-        .catch(err => console.log(err.response.data));
-    },
+    handler: argv => logger('sc2', 'data', argv),
   }).argv;
 
 module.exports = request;
