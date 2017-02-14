@@ -10,7 +10,15 @@ The CLI is called with `td` or `targetdummy` and your Battle.net Developer API k
 $ BATTLENET_CLIENT_ID=<apikey> td request <game> <resource> [--options]
 ```
 
-All request commands accept a `origin` (`-o`) and `locale` option (`-l`).
+All request commands accept `origin` (`-o`) and `locale` (`-l`) options.
+
+  - `--origin, -o` String
+    - choices: `us`, `eu`, `kr`, `tw`, `sea`, `cn`
+    - default: `us`
+  - `--locale, -l` - String
+    - choices: depends on which `origin` is specified
+    - default: the primary language code for the specified `origin`
+    - see the [API documentation](https://dev.battle.net/docs/read/community_apis) for reference
 
 ## Diablo 3
 
