@@ -7,10 +7,45 @@ The TargetDummy CLI fetches data from the Battle.net API and logs the JSON strin
 The CLI is called with `td` or `targetdummy` and your Battle.net Developer API key available through your environment variables.
 
 ```
-$ BATTLENET_CLIENT_ID=<apikey> td request <game> <command> [--options]
+$ BATTLENET_CLIENT_ID=<apikey> td request <game> <resource> [--options]
 ```
 
 All request commands accept a `origin` (`-o`) and `locale` option (`-l`).
+
+## Diablo 3
+
+```
+$ td request d3 <resource>
+```
+
+### Commands
+
+#### data
+
+  - `--key, -k` String - the key of the data resource
+    - choices: `artisan`, `follower`, `item`
+  - `--id, -i` String - the ID of the data resource
+    - artisan: `blacksmith`, `jeweler`, `mystic`
+    - follower: `templar`, `scoundrel`, `enchantress`
+    - item: the item ID
+
+#### era
+
+  - `--id, -i` Number - the era ID
+  - `--leaderboard, -b` String - the leaderboard ID
+  - `--token, -t` String - an authenticated user access token
+
+#### profile
+
+  - `--battletag, -b` String - the battletag of the user profile
+  - `--hero, -i` Number - the hero ID
+
+#### season
+
+  - `--id, -i` Number - the era ID
+  - `--leaderboard, -b` String - the leaderboard ID
+    -
+  - `--token, -t` String - an authenticated user access token
 
 ## World of Warcraft
 
@@ -22,7 +57,7 @@ $ td request wow <command>
 
 #### achievement
 
-  -  `--id, -i` Number - the achievement ID
+  - `--id, -i` Number - the achievement ID
 
 #### auction
 
@@ -60,8 +95,8 @@ $ td request wow <command>
 
 #### item
 
-- `--id, -i` Number - the item ID
-- `--set, -s` Boolean - whether the item ID is for a set
+  - `--id, -i` Number - the item ID
+  - `--set, -s` Boolean - whether the item ID is for a set
 
 #### mount
 
