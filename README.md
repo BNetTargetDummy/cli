@@ -7,22 +7,90 @@ The TargetDummy CLI fetches data from the Battle.net API and logs the JSON strin
 The CLI is called with `td` or `targetdummy` and your Battle.net Developer API key available through your environment variables.
 
 ```
-$ BATTLENET_CLIENT_ID=<apikey> td request <game> <command> [--options]
+$ BATTLENET_CLIENT_ID=<apikey> td request <game> <resource> [--options]
 ```
 
-All request commands accept a `origin` (`-o`) and `locale` option (`-l`).
+All request commands accept `origin` (`-o`) and `locale` (`-l`) options.
+
+  - `--origin, -o` String
+    - choices: `us`, `eu`, `kr`, `tw`, `sea`, `cn`
+    - default: `us`
+  - `--locale, -l` - String
+    - choices: depends on which `origin` is specified
+    - default: the primary language code for the specified `origin`
+    - see the [API documentation](https://dev.battle.net/docs/read/community_apis) for reference
+
+## Diablo 3
+
+```
+$ td request d3 <resource>
+```
+
+### Commands
+
+#### data
+
+  - `--key, -k` String - the key of the data resource
+    - choices: `artisan`, `follower`, `item`
+  - `--id, -i` String - the ID of the data resource
+    - artisan: `blacksmith`, `jeweler`, `mystic`
+    - follower: `templar`, `scoundrel`, `enchantress`
+    - item: the item ID
+
+#### era
+
+  - `--id, -i` Number - the era ID
+  - `--leaderboard, -b` String - the leaderboard ID
+  - `--token, -t` String - an authenticated user access token
+
+#### profile
+
+  - `--battletag, -b` String - the battletag of the user profile
+  - `--hero, -i` Number - the hero ID
+
+#### season
+
+  - `--id, -i` Number - the era ID
+  - `--leaderboard, -b` String - the leaderboard ID
+    -
+  - `--token, -t` String - an authenticated user access token
+
+## Starcraft 2
+
+```
+$ td request sc2 <resource>
+```
+
+### Commands
+
+#### data
+
+  - `--key, -k` String - the key of the data resource
+    - choices: `achievements`, `rewards`
+
+#### ladder
+
+  - `--id, -i` Number -  the ladder ID
+
+#### profile
+
+  - `--key, -k` String - the key of the profile resource
+  - `--id, -i` Number - the user profile ID
+  - `--name, -n` String - the user profile name
+  - `--region, -r` [Number] - the user profile region
+    - default: `1`
 
 ## World of Warcraft
 
 ```
-$ td request wow <command>
+$ td request wow <resource>
 ```
 
 ### Commands
 
 #### achievement
 
-  -  `--id, -i` Number - the achievement ID
+  - `--id, -i` Number - the achievement ID
 
 #### auction
 
@@ -60,8 +128,8 @@ $ td request wow <command>
 
 #### item
 
-- `--id, -i` Number - the item ID
-- `--set, -s` Boolean - whether the item ID is for a set
+  - `--id, -i` Number - the item ID
+  - `--set, -s` Boolean - whether the item ID is for a set
 
 #### mount
 
