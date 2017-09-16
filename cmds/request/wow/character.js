@@ -5,23 +5,11 @@ const logger = require('../../../lib/logger');
 
 const character = yargs
   .command({
-    command: 'character',
+    command: 'character <origin> <realm> <name>',
     describe: 'Fetch a World of Warcraft character',
     builder: yargs => {
       return yargs
         .options({
-          realm: {
-            alias: 'r',
-            describe: 'The [realm] of the {character}',
-            type: 'string',
-            demand: true,
-          },
-          name: {
-            alias: 'n',
-            describe: 'The [name] of the {character}',
-            type: 'string',
-            demand: true,
-          },
           fields: {
             alias: 'f',
             describe: 'A list of one or more [fields] belonging to the {character}',
