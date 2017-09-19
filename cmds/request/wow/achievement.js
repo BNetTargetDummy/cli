@@ -5,17 +5,10 @@ const logger = require('../../../lib/logger');
 
 const request = yargs
   .command({
-    command: 'achievement',
+    command: 'achievement <id>',
     describe: 'Fetch a World of Warcraft achievement',
     builder: yargs => {
       return yargs
-        .options({
-          id: {
-            alias: 'i',
-            describe: 'The [id] of the {achievement}',
-            demand: true,
-          },
-        });
     },
     handler: argv => logger('wow', 'achievement', argv),
   }).argv;
